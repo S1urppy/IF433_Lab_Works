@@ -1,6 +1,6 @@
 package oop_115708_DominikusDylon.week02
 
-class Student (val name: String, val nim: String, var major: String){
+class Student (val name: String, val nim: String, var major: String, var gpa: Double = 0.0){
     init {
         if (nim.length != 5){
             println("WARNING: Objek tercipta dengan NIM ($nim) yang tidak valid!")
@@ -9,7 +9,6 @@ class Student (val name: String, val nim: String, var major: String){
             println("LOG: Objek Student $name berhasil dialokasikan di memory")
         }
     }
-
     constructor(name: String, nim: String) : this(name, nim, "Non-Matriculated"){
         println("LOG: Menggunakan constructor jalur umum (Tanpa Jurursan).")
     }
