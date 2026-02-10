@@ -12,6 +12,9 @@ class Hero (var name: String, var hp: Int = 100, var baseDamage: Int){
 
         if(hp < 0) {
             hp = 0
+            println("Hero anda mokad")
+        } else {
+            println("Sisa HP Hero ada $hp")
         }
     }
 
