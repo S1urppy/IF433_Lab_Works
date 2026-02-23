@@ -1,4 +1,4 @@
-package week03
+package oop_115708_DominikusDylon.Week03
 
 fun main() {
     val e = Employee("Budi")

@@ -1,4 +1,4 @@
-package week03
+package rusak
 
 class Player(val username: String){
     private var xp: Int = 0

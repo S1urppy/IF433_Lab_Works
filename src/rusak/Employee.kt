@@ -1,4 +1,4 @@
-package week03
+package rusak
 
 class Employee(val name: String){
     val tax: Double
