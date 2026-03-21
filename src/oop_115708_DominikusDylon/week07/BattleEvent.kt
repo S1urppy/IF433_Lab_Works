@@ -9,4 +9,3 @@ sealed class BattleState {
 
     object SafeZone: BattleState()
 }
-}
