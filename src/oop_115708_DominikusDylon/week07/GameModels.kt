@@ -7,3 +7,11 @@ enum class ItemRarity (val dropChance: Int){
     EPIC(7),
     LEGENDARY(1)
 }
+
+sealed class GameItem{
+    data class gameItem(
+        val name: String,
+        val damage: Int,
+        val rarity: ItemRarity
+    )
+}
