@@ -28,7 +28,7 @@ fun main(){
         }
     }
 
-    val somebject: Any = 100
+    val someObject: ny = 100
     val safeString = someObject as? String ?: "Unknown String"
     println("Hasil ")
 }
