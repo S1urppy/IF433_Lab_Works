@@ -1,6 +1,6 @@
 package oop_115708_DominikusDylon.Week09
 
-fun main {
+fun main(){
     println("=== TEST LIST ===")
     val frameworks: List<String> = listOf("Kotlin", "Java", "C++")
     println("Immutable List: $frameworks")
