@@ -9,4 +9,10 @@ class WalletRepository<T> {
     fun getAll(): List<T> {
         return items
     }
+
+    fun findByName(name: String): List<T>? {
+        return items.filter {
+            (it as? Coin)?.name == name
+        }
+    }
 }
