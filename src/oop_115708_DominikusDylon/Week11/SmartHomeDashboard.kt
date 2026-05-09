@@ -59,4 +59,10 @@ fun main() {
     }
 
     println("Total daya perangkat: $totalPower Watt")
+
+    println("\n=== DAFTAR PERANGKAT ===")
+
+    homeDevices.forEach {
+        println(it.diagnose())
+    }
 }
