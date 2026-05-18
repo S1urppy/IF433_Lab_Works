@@ -25,7 +25,7 @@ fun main() {
     println("\n=== TEST BUFFERED READER ===")
 
     safeFile.bufferedReader().use { reader ->
-        reader.lineSequence().take(5).forEach { Line ->
+        reader.lineSequence().take(5).forEach { line ->
             println("Stream Read: $line")
         }
     }
