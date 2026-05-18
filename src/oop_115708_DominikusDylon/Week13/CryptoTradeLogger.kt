@@ -68,5 +68,11 @@ fun main() {
 
     val loadedData = loadTrades("crypto_trades.csv")
     val totalPnL = loadedData.sumOf{ it.pnl }
-    println("Total PNL Bersih: $totalPnL")
+
+    println("=== DATA TRADE VALID ===")
+
+    loadedData.forEach { trade ->
+        println(trade)
+    }
+    println("=== TOTAL PnL BERSIH: $totalPnL ===")
 }
