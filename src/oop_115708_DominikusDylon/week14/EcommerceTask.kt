@@ -1,20 +1,17 @@
 package oop_115708_DominikusDylon.week14
-
 import java.io.File
 
 interface OrderRepository {
-    fun saveOrder(itemName: String, finalPrice: Double, customerType: String)
+    fun saveOrder(itemName: String, finalPrice: Double)
 }
 
 class CsvOrderRepository : OrderRepository {
     private val file = File("orders.csv")
     override fun saveOrder(
         itemName: String,
-        finalPrice: Double,
-        customerType: String
-    ){
-        file.bufferedWriter().use { writer -> writer.append("$itemName, $finalPrice, $customerType\n")
-        }
+        finalPrice: Double
+    ) {
+        file.appendText("$itemName, $finalPrice\n")
     }
 }
 
@@ -28,6 +25,22 @@ class EmailNotifier : NotificationService {
     }
 }
 
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class RegularPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price
+    }
+}
+
+class VipPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price * 0.90
+    }
+}
+
 class SafeOrderProcessor(
     private val repo: OrderRepository,
     private val notifier: NotificationService
@@ -35,33 +48,35 @@ class SafeOrderProcessor(
     fun processOrder(
         itemName: String,
         basePrice: Double,
-        customerType: String
+        pricingStrategy: PricingStrategy
     ) {
-        val finalPrice = when (customerType) {
-            "REGULAR" -> basePrice
-            "VIP" -> basePrice * 0.90
-            else -> basePrice
-        }
+        val finalPrice = pricingStrategy.calculate(basePrice)
+
         println("Memproses pesanan $itemName seharga $finalPrice")
 
-        repo.saveOrder(itemName, finalPrice, customerType)
+        repo.saveOrder(itemName, finalPrice)
         notifier.sendNotification(itemName)
     }
 }
 
 fun main() {
-
     val repository = CsvOrderRepository()
     val notifier = EmailNotifier()
-
     val processor = SafeOrderProcessor(
         repository,
         notifier
     )
+    val vipCustomer = VipPricing()
+    val regularCustomer = RegularPricing()
 
     processor.processOrder(
         "Laptop Gaming",
         15000000.0,
-        "VIP"
+        vipCustomer
+    )
+    processor.processOrder(
+        "Mouse Wireless",
+        500000.0,
+        regularCustomer
     )
 }
