@@ -7,3 +7,7 @@ interface Database {
 class PostgresDatabase : Database {
     override fun query(sql: String) = listOf("pq_data1", "pq_data2")
 }
+
+class SafeUserService(private val db: Database) {
+    fun getUser(id: Int) = db.query("SELECT * FROM users WHERE id=$id")
+}
